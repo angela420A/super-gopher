@@ -1,0 +1,5 @@
+GAME:
+  SCREENWIDTH: 640
+  SCREENHEIGHT: 480
+PLAYERS:
+  PLAYER1: "assets/kenney_pixel-platformer/tiles/Characters/tile_0000.png"
