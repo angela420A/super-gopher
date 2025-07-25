@@ -1,44 +1,22 @@
 package main
 
 import (
-	"embed"
 	"log"
 	"math"
 
-	"image"
 	_ "image/png"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
+	ast "super-gopher/assets"
 	_ "super-gopher/utils/config"
+	_ "super-gopher/utils/logger"
 )
 
 type Vector struct {
 	X float64
 	Y float64
-}
-
-// assets
-
-//go:embed assets/**
-var assets embed.FS
-
-var PlayerSprite = mustLoadImage("assets/kenney_space-shooter-redux/PNG/Enemies/enemyBlack3.png")
-
-func mustLoadImage(name string) *ebiten.Image {
-	f, err := assets.Open(name)
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
-
-	img, _, err := image.Decode(f)
-	if err != nil {
-		panic(err)
-	}
-
-	return ebiten.NewImageFromImage(img)
 }
 
 // Player
@@ -49,7 +27,7 @@ type Player struct {
 }
 
 func NewPlayer() *Player {
-	sprite := PlayerSprite
+	sprite := ast.PlayerSprite
 
 	return &Player{
 		position: Vector{X: 100, Y: 100},
@@ -128,7 +106,7 @@ var img *ebiten.Image
 
 func init() {
 	var err error
-	img, _, err = ebitenutil.NewImageFromFile("assets/kenney_space-shooter-redux/Backgrounds/purple.png")
+	img, _, err = ebitenutil.NewImageFromFile("assets/backgrounds/tile_0000.png")
 	if err != nil {
 		log.Fatal(err)
 	}
