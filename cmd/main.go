@@ -10,8 +10,8 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 
 	ast "super-gopher/assets"
-	_ "super-gopher/utils/config"
-	_ "super-gopher/utils/logger"
+	_ "super-gopher/internal/config"
+	_ "super-gopher/internal/logger"
 )
 
 type Vector struct {
@@ -106,7 +106,7 @@ var img *ebiten.Image
 
 func init() {
 	var err error
-	img, _, err = ebitenutil.NewImageFromFile("assets/backgrounds/tile_0000.png")
+	img, _, err = ebitenutil.NewImageFromFile("./assets/images/backgrounds/tile_0000.png")
 	if err != nil {
 		log.Fatal(err)
 	}
