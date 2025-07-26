@@ -8,12 +8,12 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-var cfg *Config
+var Config *AppConfig
 
-type Config struct {
+type AppConfig struct {
 	Game struct {
-		ScreenWidth  int64 `yaml:"SCREENWIDTH"`
-		ScreenHeight int64 `yaml:"SCREENHEIGHT"`
+		ScreenWidth  int `yaml:"SCREENWIDTH"`
+		ScreenHeight int `yaml:"SCREENHEIGHT"`
 	} `yaml:"GAME"`
 	Player struct {
 		Player1 string `yaml:"PLAYER1"`
@@ -26,7 +26,7 @@ func init() {
 		log.Fatal("Failed to load YAML: ", err)
 	}
 
-	fmt.Printf("Final Merged Config: %+v\n", cfg.Game.ScreenHeight)
+	fmt.Printf("Final Merged Config: %+v\n", Config.Game.ScreenHeight)
 }
 
 func loadConfigFromYAML(path string) error {
@@ -34,7 +34,7 @@ func loadConfigFromYAML(path string) error {
 	if err != nil {
 		return err
 	}
-	if err := yaml.Unmarshal(data, &cfg); err != nil {
+	if err := yaml.Unmarshal(data, &Config); err != nil {
 		return err
 	}
 	return nil
